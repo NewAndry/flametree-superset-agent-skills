@@ -1,0 +1,38 @@
+{
+  "name": "flametree",
+  "owner": {
+    "name": "Flametree analytics"
+  },
+  "metadata": {
+    "description": "Flametree analytics (Apache Superset) MCP, one plugin per stand. Ask the user which stand to install (test, dev); install only that plugin.",
+    "version": "0.5.4"
+  },
+  "plugins": [
+    {
+      "name": "flametree-analytics-test",
+      "source": "./plugins/flametree-analytics-test",
+      "description": "Flametree analytics, test stand (portal.flametree.test.enfint.ai)",
+      "version": "0.5.4",
+      "category": "data",
+      "keywords": [
+        "flametree",
+        "superset",
+        "analytics",
+        "test"
+      ]
+    },
+    {
+      "name": "flametree-analytics-dev",
+      "source": "./plugins/flametree-analytics-dev",
+      "description": "Flametree analytics, dev stand (portal.flametree.dev.enfint.ai)",
+      "version": "0.5.4",
+      "category": "data",
+      "keywords": [
+        "flametree",
+        "superset",
+        "analytics",
+        "dev"
+      ]
+    }
+  ]
+}

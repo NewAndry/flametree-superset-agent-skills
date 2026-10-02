@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "flametree-test": {
+      "type": "http",
+      "url": "https://portal.flametree.test.enfint.ai/ai-mcp/mcp"
+    }
+  }
+}

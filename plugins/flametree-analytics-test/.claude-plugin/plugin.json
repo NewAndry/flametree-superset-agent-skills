@@ -1,0 +1,20 @@
+{
+  "name": "flametree-analytics-test",
+  "version": "0.5.4",
+  "description": "Flametree analytics (test stand) in Claude: connects the flametree-test MCP server (Apache Superset at portal.flametree.test.enfint.ai) and adds skills with the datamart catalog, chart recipes, house-style dashboards and tenant handling.",
+  "author": {
+    "name": "Flametree analytics"
+  },
+  "homepage": "https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills",
+  "repository": "https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills",
+  "keywords": [
+    "flametree",
+    "superset",
+    "mcp",
+    "dashboards",
+    "analytics",
+    "test"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
