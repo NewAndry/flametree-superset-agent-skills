@@ -47,14 +47,17 @@ itself (dynamic client registration) and signs people in through the Flametree p
 
 ## Get Started
 
-You need a Flametree portal account. Plugins and Claude Code need a paid Claude plan (Pro, Max,
-Team or Enterprise). On the Free plan plugin marketplaces are not available, but one custom
-connector is: add the stand's address as a custom connector (MCP tools without the skills).
+You need a Flametree portal account. Chat works on any Claude plan, Free included: on Free only one
+custom connector is allowed, and the plugin's connector takes it. Claude Code needs a paid plan (Pro,
+Max, Team or Enterprise). Without the plugin, add the stand's address as a custom connector (MCP
+tools without the skills).
 
 ### claude.ai and Claude Desktop
 
 1. Customize → Plugins → **Add** → **Add marketplace** → **Add from a repository**.
-2. Repository: `https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills.git` → **Sync**.
+2. Repository: `https://github.com/NewAndry/flametree-superset-agent-skills` → **Sync**. This is the GitHub copy of this repository: claude.ai accepts
+   marketplaces only from github.com, gitlab.com and bitbucket.org (or a GitLab instance configured
+   by a Team/Enterprise organization), not from gitlab.enfint.ai. Claude Code takes the GitLab address.
 3. Install the plugin of your stand, for example **flametree-analytics-dev**.
 4. Open the plugin's **Connectors** tab → **Connect** → **Continue** → **Add** → **Connect**
    (keep the defaults: "Sign in now", "Register automatically").
@@ -183,6 +186,11 @@ plugins/<plugin>/                  generated per stand: plugin.json, .mcp.json, 
 .claude-plugin/marketplace.json    generated marketplace (claude.ai and Claude Code)
 install.ps1, install.sh            one-shot installers for Claude Code (plugin + sign-in)
 ```
+
+The main repository is https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills;
+https://github.com/NewAndry/flametree-superset-agent-skills is a copy for claude.ai, which does not
+accept marketplaces from gitlab.enfint.ai. Push every change to both (or set up a push mirror in GitLab:
+Settings > Repository > Mirroring repositories).
 
 After editing `skills/` or `stands.json` run `python scripts/build_plugins.py` and commit the
 result. Keep skills short and concrete: tool names, verified configs, exact phrases; update them

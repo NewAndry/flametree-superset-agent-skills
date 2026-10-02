@@ -1,14 +1,14 @@
 # Пилотная проверка Flametree Analytics MCP
 
 Инструкция для участников пробы. Нужны: учётная запись портала Flametree на стенде пробы
-(test или dev) и платный план Claude для плагина (на бесплатном плане подойдёт свой коннектор, см. инструкцию пользователя). Вход в GitLab не
-нужен, репозиторий публичный. Весь путь занимает около 10 минут.
+(test или dev) и учётная запись Claude: для чата подойдёт любой план, для Claude Code нужен платный. Вход в GitLab и GitHub не
+нужен, репозитории публичные. Весь путь занимает около 10 минут.
 
 ## 1. Установка и вход
 
 Подойдёт чат Claude или Claude Code, порядок в [инструкции пользователя](user-guide.md). Стенд для пробы: test (плагин `flametree-analytics-test`) или dev (`flametree-analytics-dev`).
 
-Чат Claude: Customize → Plugins → Add → Add marketplace → Add from a repository → `https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills.git` → Sync → Add у плагина своего стенда → Connectors → Connect → Continue → Add → Connect → вход в портал.
+Чат Claude: Customize → Plugins → Add → Add marketplace → Add from a repository → `https://github.com/NewAndry/flametree-superset-agent-skills` → Sync → Add у плагина своего стенда → Connectors → Connect → Continue → Add → Connect → вход в портал.
 
 Claude Code: вставьте фразу, выберите стенд, когда Claude спросит, и следуйте его подсказкам:
 
