@@ -1,24 +1,24 @@
 # Пилотная проверка Flametree Analytics MCP
 
-Инструкция для участников пробы. Нужны: учётная запись портала Flametree (dev),
-Claude Code (приложение, CLI или расширение VS Code) с оплаченным планом, доступ к
-GitLab `gitlab.enfint.ai`. Весь путь занимает около 10 минут.
+Инструкция для участников пробы. Нужны: учётная запись портала Flametree на стенде пробы
+(test или dev) и платный план Claude для плагина (на бесплатном плане подойдёт свой коннектор, см. инструкцию пользователя). Вход в GitLab не
+нужен, репозиторий публичный. Весь путь занимает около 10 минут.
 
 ## 1. Установка и вход
 
-Подойдёт чат Claude или Claude Code, порядок в [инструкции пользователя](user-guide.md). Стенд для пробы: dev, плагин `flametree-analytics-dev`.
+Подойдёт чат Claude или Claude Code, порядок в [инструкции пользователя](user-guide.md). Стенд для пробы: test (плагин `flametree-analytics-test`) или dev (`flametree-analytics-dev`).
 
-Чат Claude: Customize → Plugins → Add → Add marketplace → Add from a repository → `https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills.git` → Sync → Add у **flametree-analytics-dev** → Connectors → Connect → Continue → Add → Connect → вход в портал.
+Чат Claude: Customize → Plugins → Add → Add marketplace → Add from a repository → `https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills.git` → Sync → Add у плагина своего стенда → Connectors → Connect → Continue → Add → Connect → вход в портал.
 
-Claude Code: вставьте фразу и следуйте подсказкам Claude:
+Claude Code: вставьте фразу, выберите стенд, когда Claude спросит, и следуйте его подсказкам:
 
 ```text
-Install the Flametree Analytics MCP plugin for Claude Code, following the installation instructions in this repository: https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills
+Install the Flametree Analytics MCP plugin from https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills
 ```
 
 ## 2. Включить плагин
 
-Чат: начните новый чат, проверьте, что коннектор плагина включён. Claude Code: новая сессия (после первого входа обязательно).
+Чат: начните новый чат, проверьте, что коннектор плагина включён. Claude Code: после установки откройте новую сессию, в ней само откроется окно входа. После первого входа откройте ещё одну новую сессию, в ней инструменты уже на месте.
 
 ## 3. Проверки
 

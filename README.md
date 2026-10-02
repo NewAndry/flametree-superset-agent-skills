@@ -47,7 +47,9 @@ itself (dynamic client registration) and signs people in through the Flametree p
 
 ## Get Started
 
-You need a Flametree portal account and a paid Claude plan (Pro, Max, Team or Enterprise).
+You need a Flametree portal account. Plugins and Claude Code need a paid Claude plan (Pro, Max,
+Team or Enterprise). On the Free plan plugin marketplaces are not available, but one custom
+connector is: add the stand's address as a custom connector (MCP tools without the skills).
 
 ### claude.ai and Claude Desktop
 

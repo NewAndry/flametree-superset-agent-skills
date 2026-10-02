@@ -5,15 +5,13 @@ Flametree Analytics MCP подключает Claude к аналитике Flamet
 ## Что понадобится
 
 - Учётная запись портала Flametree. Логин и пароль те же, что для входа в портал.
-- Оплаченный план Claude: Pro, Max, Team или Enterprise. На бесплатном плане нельзя добавить плагин или свой коннектор.
-- Знать свой стенд. Для пробы это dev.
+- План Claude. Плагин из маркетплейса и Claude Code работают на платных планах: Pro, Max, Team или Enterprise. На бесплатном плане маркетплейсы плагинов недоступны, но можно добавить один свой коннектор, см. раздел «Бесплатный план Claude».
+- Знать свой стенд. Сейчас аналитика через Claude доступна на двух стендах, production и demo подключатся позже.
 
-| Стенд | Плагин |
-|---|---|
-| production | `flametree-analytics` |
-| demo | `flametree-analytics-demo` |
-| test | `flametree-analytics-test` |
-| dev | `flametree-analytics-dev` |
+| Стенд | Плагин | Портал |
+|---|---|---|
+| test | `flametree-analytics-test` | portal.flametree.test.enfint.ai |
+| dev | `flametree-analytics-dev` | portal.flametree.dev.enfint.ai |
 
 Установка занимает пару минут. Выберите способ: чат Claude или Claude Code.
 
@@ -21,11 +19,24 @@ Flametree Analytics MCP подключает Claude к аналитике Flamet
 
 1. Откройте **Customize** → **Plugins** → **Add** → **Add marketplace** → **Add from a repository**.
 2. В поле репозитория введите `https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills.git` и нажмите **Sync**.
-3. В списке появятся плагины Flametree. Нажмите **Add** у плагина своего стенда, например **flametree-analytics-dev**.
+3. В списке появятся плагины Flametree, по одному на стенд. Нажмите **Add** у плагина своего стенда, например **Flametree analytics test**.
 4. Откройте у плагина вкладку **Connectors** и нажмите **Connect**. В окне ничего не меняйте: **Continue**, **Add**, **Connect**.
 5. Войдите на странице портала Flametree. Если вы уже вошли в портал в этом браузере, вход пройдёт сам.
 
 Готово: в новом чате спросите «покажи мои тенанты в Flametree».
+
+Если claude.ai отвечает «This marketplace is already added» или в списке старые плагины, удалите прежний маркетплейс Flametree в **Add** → **Manage marketplaces** и добавьте адрес выше заново.
+
+## Бесплатный план Claude
+
+На бесплатном плане плагины недоступны, зато можно подключить один свой коннектор. Инструменты Flametree будут те же, но без подсказок плагина про витрины и оформление дашбордов: Claude разбирается в данных сам.
+
+1. Откройте **Customize** → **Connectors** → **Add** → **Add custom connector**.
+2. Название любое, например `flametree-test`. Адрес сервера своего стенда:
+   - test: `https://portal.flametree.test.enfint.ai/ai-mcp/mcp`
+   - dev: `https://portal.flametree.dev.enfint.ai/ai-mcp/mcp`
+3. Нажмите **Add**, затем **Connect**. В окне ничего не меняйте.
+4. Войдите на странице портала Flametree.
 
 ## Установка в Claude Code
 
@@ -33,7 +44,7 @@ Flametree Analytics MCP подключает Claude к аналитике Flamet
 2. Вставьте в чат и отправьте:
 
    ```text
-   Install the Flametree Analytics MCP plugin for Claude Code, following the installation instructions in this repository: https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills
+   Install the Flametree Analytics MCP plugin from https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills
    ```
 
    Claude спросит, к какому стенду подключиться. Сейчас доступны dev и test.
@@ -41,9 +52,9 @@ Flametree Analytics MCP подключает Claude к аналитике Flamet
 4. В новой сессии само откроется окно терминала и страница входа портала Flametree в браузере. Войдите как обычно. Если вы уже вошли в портал в этом браузере, вход пройдёт сам, и окно закроется.
 5. После первого входа откройте ещё одну новую сессию. Сессия, начатая до входа, его не подхватывает. В новой сессии инструменты Flametree уже на месте.
 
-Повторный вход не нужен около суток, потом Claude попросит войти заново.
+Повторный вход не нужен около суток, потом окно входа снова откроется само при старте сессии.
 
-Без помощи Claude то же делает одна команда в терминале:
+Быстрее всего через одну команду в терминале. Она ставит плагин и сразу открывает вход, поэтому после неё достаточно открыть Claude Code: инструменты будут на месте в первой же сессии. По умолчанию ставится dev.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -c "irm https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills/-/raw/main/install.ps1 | iex"
@@ -55,7 +66,13 @@ powershell -ExecutionPolicy Bypass -c "irm https://gitlab.enfint.ai/flametree/fl
 curl -fsSL https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills/-/raw/main/install.sh | bash
 ```
 
-Для другого стенда в Windows перед `irm` добавьте `$env:FLAMETREE_STAND='test';`, в macOS и Linux замените `| bash` на `| bash -s test`.
+Для стенда test в Windows:
+
+```powershell
+powershell -ExecutionPolicy Bypass -c "$env:FLAMETREE_STAND='test'; irm https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills/-/raw/main/install.ps1 | iex"
+```
+
+В macOS и Linux замените `| bash` на `| bash -s test`.
 
 ## Первый запрос
 
@@ -127,11 +144,12 @@ SQL-запросы напрямую Claude выполнять не может: �
 
 | Что видите | Что делать |
 |---|---|
-| Коннектор, добавленный раньше вручную с `claude-mcp`, перестал работать | Удалите его и подключите заново кнопкой Connect у плагина, ничего не меняя |
-| Claude Code: окно терминала или браузер не открылись | Выполните в терминале `claude mcp login plugin:flametree-analytics-dev:flametree-dev` (для своего стенда подставьте его плагин и сервер) |
+| Старый коннектор Flametree, добавленный раньше вручную, перестал работать | Удалите его и подключите заново кнопкой Connect у плагина, ничего не меняя |
+| Claude Code: окно входа не открылось | Выполните в терминале `claude mcp login plugin:flametree-analytics-test:flametree-test` (для dev: `plugin:flametree-analytics-dev:flametree-dev`), затем откройте новую сессию |
+| Claude Code: вход прошёл, но инструментов нет | Откройте новую сессию. Сессия, начатая до входа, его не подхватывает, `/reload-plugins` не помогает |
 | «MCP access denied … tenant not provisioned» | Ваша учётная запись портала не привязана к компании с аналитикой. Напишите команде Flametree |
-| Claude не видит инструменты Flametree | Чат: проверьте, что коннектор плагина подключён и включён в чате. Claude Code: откройте новую сессию, `/reload-plugins` не помогает |
-| Claude просит войти заново | Токен живёт около суток. Чат: нажмите Connect у коннектора. Claude Code: повторите команду входа |
+| Чат: Claude не видит инструменты Flametree | Проверьте, что коннектор плагина подключён и включён в этом чате |
+| Claude просит войти заново | Вход живёт около суток. Чат: нажмите Connect у коннектора. Claude Code: откройте новую сессию, окно входа откроется само |
 | Цифры не меняются после переключения компании | Спросите ещё раз «какая компания активна». Если не та, повторите переключение |
 | Вход в браузере прошёл под другим человеком | В браузере была чужая сессия портала. Выйдите из портала и повторите вход |
 
@@ -146,4 +164,4 @@ codex mcp add flametree-dev --url https://portal.flametree.dev.enfint.ai/ai-mcp/
 codex mcp login flametree-dev
 ```
 
-Для другого стенда замените адрес, список адресов в README репозитория. Подсказок про витрины и оформление в этом случае нет, агент разбирается в данных сам.
+Для стенда test: имя `flametree-test` и адрес `https://portal.flametree.test.enfint.ai/ai-mcp/mcp`. Подсказок про витрины и оформление в этом случае нет, агент разбирается в данных сам.
