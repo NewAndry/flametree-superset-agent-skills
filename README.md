@@ -159,6 +159,7 @@ Expected: the list of tenants, eight charts, a dashboard with filters on top and
 ## Documentation
 
 - [Инструкция пользователя (RU)](docs/user-guide.md): установка, первые запросы, что можно попросить, типовые проблемы.
+- [User guide (EN)](docs/user-guide.en.md): installation with screenshots, first requests, troubleshooting.
 - [Пилотная проверка (RU)](docs/pilot-test.md): чек-лист для участников пробы.
 
 ## Common Issues

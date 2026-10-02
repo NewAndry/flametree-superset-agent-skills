@@ -17,11 +17,41 @@ Flametree Analytics MCP подключает Claude к аналитике Flamet
 
 ## Установка в чат Claude (claude.ai или приложение Claude)
 
-1. Откройте **Customize** → **Plugins** → **Add** → **Add marketplace** → **Add from a repository**.
-2. В поле репозитория введите `https://github.com/NewAndry/flametree-superset-agent-skills` и нажмите **Sync**. Это копия нашего репозитория на GitHub: адрес нашего GitLab claude.ai не принимает, он берёт маркетплейсы только с github.com, gitlab.com и bitbucket.org.
-3. В списке появятся плагины Flametree, по одному на стенд. Нажмите **Add** у плагина своего стенда, например **Flametree analytics test**.
-4. Откройте у плагина вкладку **Connectors** и нажмите **Connect**. В окне ничего не меняйте: **Continue**, **Add**, **Connect**.
-5. Войдите на странице портала Flametree. Если вы уже вошли в портал в этом браузере, вход пройдёт сам.
+1. Откройте **Customize** → **Plugins** → **Add** → **Add marketplace**.
+
+   ![Меню Add в Customize, Plugins](images/claude-01-add-marketplace-menu.png)
+
+2. Выберите **Add from a repository**.
+
+   ![Окно Add marketplace](images/claude-02-add-from-repository.png)
+
+3. Вставьте в поле адрес `https://github.com/NewAndry/flametree-superset-agent-skills` и нажмите на строку **Use "…"** под полем. Это копия нашего репозитория на GitHub: адрес нашего GitLab claude.ai не принимает, он берёт маркетплейсы только с github.com, gitlab.com и bitbucket.org.
+
+   ![Адрес репозитория в поле URL](images/claude-03-repository-url.png)
+
+4. Нажмите **Sync**.
+
+   ![Кнопка Sync](images/claude-04-sync.png)
+
+5. В списке появятся плагины Flametree, по одному на стенд. Нажмите **Add** у плагина своего стенда, например **Flametree analytics test**.
+
+   ![Плагины Flametree в списке](images/claude-05-plugins-list.png)
+
+6. На странице плагина откройте вкладку **Connectors** и нажмите **Connect**.
+
+   ![Вкладка Connectors, кнопка Connect](images/claude-06-connect.png)
+
+7. В первом окне ничего не меняйте, нажмите **Continue**.
+
+   ![Окно Add custom connector](images/claude-07-connector-continue.png)
+
+8. Во втором окне оставьте выбранными **Sign in now** и **Register automatically** и нажмите **Add** внизу окна.
+
+   ![Настройки входа по умолчанию](images/claude-08-connector-defaults.png)
+
+9. Войдите на странице портала Flametree. Если вы уже вошли в портал в этом браузере, вход пройдёт сам. Коннектор перейдёт в статус **Connected**.
+
+   ![Коннектор подключён](images/claude-09-connected.png)
 
 Готово: в новом чате спросите «покажи мои тенанты в Flametree».
 
