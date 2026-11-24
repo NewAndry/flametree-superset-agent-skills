@@ -118,7 +118,7 @@ Build the "Agent overview" dashboard for all time
 Build a campaign dashboard for the last month: funnel, communication statuses, successful contacts
 ```
 
-Claude creates the charts, assembles them into a dashboard in the house style, sends a link and asks whether to publish the dashboard to the portal. Nothing is published without your yes. On production, publishing to the portal from Claude is not enabled yet: open the dashboard by its Superset link.
+Claude creates the charts, assembles them into a dashboard in the house style, sends a link and asks whether to publish the dashboard to the portal. Nothing is published without your yes.
 
 **Open a dashboard**
 

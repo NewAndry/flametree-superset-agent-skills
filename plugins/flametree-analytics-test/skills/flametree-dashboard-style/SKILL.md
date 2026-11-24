@@ -13,8 +13,6 @@ description: How to build and style Flametree dashboards in Superset through the
 4. Answer the user in three lines: the dashboard link (`url` from `apply_dashboard_template`, the same as `dashboard_url` from `generate_dashboard`), the charts in one line, and the question whether to publish it to the portal.
 5. Publish only after an explicit yes: `publish_to_portal(dashboard_id, name)`, then give the portal page link. To remove it: `unpublish_from_portal`.
 
-On production (MCP server `flametree`, plugin `flametree-analytics`) portal publishing is not enabled yet: in step 4 do not ask about publishing, and do not call `publish_to_portal`. If the user asks to publish, say it is not available on production yet and give the Superset link.
-
 ## Defaults
 
 - Big numbers (`big_number`) for totals: total, average, share. Charts (`xy`): a line over dates, bars over categories. A table only when a list is requested.
