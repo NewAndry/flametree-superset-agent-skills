@@ -9,11 +9,12 @@ All data, charts, dashboards and portal publishing belong to the **active tenant
 
 ## Rules
 
-1. Call `list_my_tenants` once at the start of the session. It returns `active_tenant`, `home_tenant` and a list marked `home` (home tenant), `extra` (additional access), `any` (platform staff, all tenants available).
+1. Call `list_my_tenants` once at the start of the session. It returns `active_tenant` (id and name), `home_tenant` and `tenants` as `[id, name]` pairs. If the user already named the company, skip the list and call `use_tenant` with that name.
+   Platform staff (`portal_role` CLIENT_ADMIN) may use any tenant of the portal (`portal_tenants_total`); without arguments they get only the tenants that have data. To find another one, call `list_my_tenants(search="<part of the name>")`.
 2. With a single tenant, do not ask and do not mention it.
 3. With more than one tenant, if the user did not say which company to work with, ask before the first data request: "Which company are we working with: A or B?". Do not show a list longer than ten in full; ask the user to name the company.
-4. Switching: `use_tenant(<id or exact name>)`. The choice is stored on the server and applies to later sessions too; do not repeat it.
-5. If the user names a company that is not in the list, say there is no access and show the available ones. Do not pick a similar name.
+4. Switching: `use_tenant(<id or exact name>)`. The choice is stored on the server and applies to later sessions too; do not repeat it. If it answers that several tenants have this name, show their ids and ask which one.
+5. If the user names a company that is not in the list, try `list_my_tenants(search=...)` once; if it is still not found, say there is no access and show the available ones. Do not pick a similar name.
 6. After a switch, dashboards built earlier show the new tenant's data automatically; no need to rebuild them.
 
 ## What to tell the user
