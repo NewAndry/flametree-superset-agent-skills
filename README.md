@@ -124,7 +124,7 @@ Installing is not permission to build or publish dashboards.
    Code extension). For claude.ai, Claude Desktop chat or Codex, give the user the matching section
    above instead of installing anything.
 2. Ask the user which stand to connect to. Offer only stands where the MCP service is enabled
-   (table above; now `dev` and `test`), and do not recommend production while it is not enabled.
+   (table above; now `prod`, `test` and `dev`).
 3. Install the stand's plugin with plain `claude` commands from your shell tool (dev shown;
    take the plugin name of another stand from the table):
    ```

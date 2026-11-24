@@ -1,0 +1,27 @@
+{
+  "description": "Opens the Flametree portal sign-in when the MCP server is not signed in yet.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/signin.sh\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/signin.sh\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}

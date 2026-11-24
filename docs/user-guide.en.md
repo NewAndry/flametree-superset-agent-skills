@@ -6,10 +6,11 @@ Flametree Analytics MCP connects Claude to Flametree analytics. You describe wha
 
 - A Flametree portal account. The login and password are the same as for the portal.
 - Any Claude plan for chat, including Free. On the Free plan you can connect only one custom connector, and the plugin's connector takes that slot. Claude Code works on paid plans: Pro, Max, Team or Enterprise.
-- Your stand. Analytics through Claude is available on two stands now; production and demo will be connected later.
+- Your stand. Analytics through Claude is available on three stands now; demo will be connected later.
 
 | Stand | Plugin | Portal |
 |---|---|---|
+| production | `flametree-analytics` | portal.flametree.ai |
 | test | `flametree-analytics-test` | portal.flametree.test.enfint.ai |
 | dev | `flametree-analytics-dev` | portal.flametree.dev.enfint.ai |
 
@@ -79,7 +80,7 @@ If the plugin is already installed in Claude chat under the same account, you do
    Install the Flametree Analytics MCP plugin from https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills
    ```
 
-   Claude asks which stand to connect to. dev and test are available now.
+   Claude asks which stand to connect to. production, test and dev are available now.
 3. Claude installs the plugin and asks you to open a new session.
 4. In the new session a terminal window and the Flametree portal sign-in page in the browser open by themselves. Sign in as usual. If you are already signed in to the portal in this browser, sign-in completes by itself and the window closes.
 5. After the first sign-in, open one more new session. A session started before the sign-in does not pick it up. In the new session the Flametree tools are in place.
@@ -117,7 +118,7 @@ Build the "Agent overview" dashboard for all time
 Build a campaign dashboard for the last month: funnel, communication statuses, successful contacts
 ```
 
-Claude creates the charts, assembles them into a dashboard in the house style, sends a link and asks whether to publish the dashboard to the portal. Nothing is published without your yes.
+Claude creates the charts, assembles them into a dashboard in the house style, sends a link and asks whether to publish the dashboard to the portal. Nothing is published without your yes. On production, publishing to the portal from Claude is not enabled yet: open the dashboard by its Superset link.
 
 **Open a dashboard**
 
