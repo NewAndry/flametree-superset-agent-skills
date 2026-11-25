@@ -35,9 +35,12 @@ entries = []
 for stand in [s for s in cfg["stands"] if s.get("enabled")]:
     name, server, host = stand["plugin"], stand["server"], stand["host"]
     desc = DESCRIPTION.format(label=stand["label"], server=server, host=host)
+    # label shown in Claude instead of the plugin name; production has no suffix
+    display = "Flametree Analytics" + ("" if stand["id"] == "prod" else f" ({stand['id']})")
     pdir = plugins_dir / name
     write_json(pdir / ".claude-plugin" / "plugin.json", {
         "name": name,
+        "displayName": display,
         "version": cfg["version"],
         "description": desc,
         "author": {"name": "Flametree analytics"},
@@ -65,6 +68,7 @@ for stand in [s for s in cfg["stands"] if s.get("enabled")]:
     })
     entries.append({
         "name": name,
+        "displayName": display,
         "source": f"./plugins/{name}",
         "description": f"Flametree analytics, {stand['label']} ({host})",
         "version": cfg["version"],

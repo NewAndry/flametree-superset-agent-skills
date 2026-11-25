@@ -1,6 +1,7 @@
 {
   "name": "flametree-analytics-dev",
-  "version": "0.5.7",
+  "displayName": "Flametree Analytics (dev)",
+  "version": "0.5.8",
   "description": "Flametree analytics (dev stand) in Claude: connects the flametree-dev MCP server (Apache Superset at portal.flametree.dev.enfint.ai) and adds skills with the datamart catalog, chart recipes, house-style dashboards and tenant handling.",
   "author": {
     "name": "Flametree analytics"
