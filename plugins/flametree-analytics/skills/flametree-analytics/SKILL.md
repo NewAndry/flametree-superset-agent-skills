@@ -1,11 +1,11 @@
 ---
 name: flametree-analytics
-description: Flametree analytics through the Flametree MCP server (Superset 6.1). Use when the user asks for a dashboard, a chart, numbers on sessions, messages, agents, operators or campaigns, an interpretation of the data, publishing a dashboard to the portal, or switching the tenant (company). Contains the datamart catalog and ready chart recipes; do not explore the datasets again.
+description: Flametree analytics through the Flametree MCP server (Superset 6.1). Use when the user asks for a dashboard, a chart, numbers on sessions, messages, agents, operators or campaigns, an interpretation of the data, publishing a dashboard to the portal, a custom SQL query or an own dataset, or switching the tenant (company). Contains the datamart catalog and ready chart recipes; do not explore the datasets again.
 ---
 
 # Flametree analytics through MCP
 
-All data comes only from the Flametree MCP tools. No files; SQL Lab is closed for this role.
+All data comes only from the Flametree MCP tools. No files. Own SQL only as described in "Own SQL and own datasets" below.
 The catalog below replaces `get_dataset_info`: call it only for columns that are not listed here. If a call fails with "MCP access denied" or the portal returns 403, explain it and do not work around it. If a tool is not listed, find it with `search_tools` and run it with `call_tool`.
 
 Building, styling and publishing dashboards: skill `flametree-dashboard-style`. Several companies: skill `flametree-tenants`.
@@ -79,6 +79,17 @@ AGG: SUM, AVG, COUNT, COUNT_DISTINCT, MAX, MIN, MEDIAN. Filters: `"filters":[{"c
 | Communication statuses | `vw_communications_v2` | xy bar (or pie), x `communications_status`, y `contacts_id` COUNT |
 
 Standard "agent overview" dashboard: total sessions, unique customers, average messages, average bot response time (big_number, Fast Facts tab), sessions by day, by channel, by agent, automation rate (xy, Trends tab). Eight charts, one generate_dashboard, one apply_dashboard_template.
+
+## Own SQL and own datasets
+
+Use only when the Flametree MCP server instructions allow own SQL (they name the database "Flametree MCP" and the schema `mcp`). If the instructions say SQL Lab is closed, do not try `execute_sql` or `create_virtual_dataset`: build charts on the catalog datamarts.
+
+Prefer the catalog and the recipes above; write SQL only when they cannot answer (custom grouping, joins, window functions, a derived column).
+- Database: "Flametree MCP" (find its id with `list_databases`). Tables: only schema `mcp`, with the same names and columns as the catalog: `mcp.hp_sessions`, `mcp.hp_session_logs`, `mcp.standard_calculated_hp_session_logs`, `mcp.vw_human_agent_handled`, `mcp.hp_communications`, `mcp.vw_campaign_participants_v2`, `mcp.vw_communications_v2`. Other schemas (`datamarts`, `public`) are refused by the database; do not retry with them.
+- The rows are already limited to the active tenant by the database. Do not filter by `tenant_id`; to see another company, switch with `use_tenant` (skill `flametree-tenants`) and run the query again.
+- Read only: SELECT. INSERT/UPDATE/DELETE/CREATE are refused.
+- `execute_sql`: quick answers and checks. Always aggregate or add LIMIT; do not pull raw rows.
+- `create_virtual_dataset`: when the user wants a chart or a dashboard on the query. Keep a time column in the output if the chart needs a time axis, give columns clear aliases, and pass `database_id` of "Flametree MCP". Dataset names are shared by all users of the stand: make the name specific, for example `<topic>_<user or team>_<yyyymmdd>`, and on "already exists" pick another name. Then use the returned dataset id in `generate_chart`. Own datasets are visible only to their owner and the catalog stays shared.
 
 ## Stands
 

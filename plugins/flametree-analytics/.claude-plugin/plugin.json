@@ -1,7 +1,7 @@
 {
   "name": "flametree-analytics",
   "displayName": "Flametree Analytics",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "description": "Flametree analytics (production) in Claude: connects the flametree MCP server (Apache Superset at portal.flametree.ai) and adds skills with the datamart catalog, chart recipes, house-style dashboards and tenant handling.",
   "author": {
     "name": "Flametree analytics"
