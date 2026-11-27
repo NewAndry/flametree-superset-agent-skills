@@ -33,6 +33,7 @@ Install the Flametree Analytics MCP plugin from https://gitlab.enfint.ai/flametr
 | 5 | `Да, опубликуй в портал` | Ссылка вида `…/custom/<id>`. По ней дашборд открывается в портале в разделе Custom dashboards |
 | 6 | `Убери этот дашборд из портала` | Запись в портале исчезла, дашборд в Superset остался |
 | 7 | `Выполни SQL: select count(*) from datamarts.hp_sessions` | Отказ: SQL для этой роли закрыт. Claude предлагает построить чарт |
+| 8 | test: `Сделай свой датасет: сессии по дням и каналам, и чарт по нему` | Датасет на «Flametree MCP» по `datamarts.hp_sessions`, чарт по нему; после `use_tenant` на другую компанию цифры другие. На prod Claude отвечает, что свои датасеты закрыты, и строит чарт по витрине |
 
 Дополнительно, если у вас несколько компаний:
 

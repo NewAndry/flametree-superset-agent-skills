@@ -1,11 +1,11 @@
 ---
 name: flametree-analytics
-description: Flametree analytics through the Flametree MCP server (Superset 6.1). Use when the user asks for a dashboard, a chart, numbers on sessions, messages, agents, operators or campaigns, an interpretation of the data, publishing a dashboard to the portal, or switching the tenant (company). Contains the datamart catalog and ready chart recipes; do not explore the datasets again.
+description: Flametree analytics through the Flametree MCP server (Superset 6.1). Use when the user asks for a dashboard, a chart, numbers on sessions, messages, agents, operators or campaigns, an interpretation of the data, publishing a dashboard to the portal, an own dataset on a custom SQL query, or switching the tenant (company). Contains the datamart catalog and ready chart recipes; do not explore the datasets again.
 ---
 
 # Flametree analytics through MCP
 
-All data comes only from the Flametree MCP tools. No files; own SQL and own datasets are closed for this role.
+All data comes only from the Flametree MCP tools. No files. Own datasets only as described in "Own datasets" below; `execute_sql` is closed.
 The catalog below replaces `get_dataset_info`: call it only for columns that are not listed here. If a call fails with "MCP access denied" or the portal returns 403, explain it and do not work around it. If a tool is not listed, find it with `search_tools` and run it with `call_tool`.
 
 Building, styling and publishing dashboards: skill `flametree-dashboard-style`. Several companies: skill `flametree-tenants`.
@@ -80,9 +80,17 @@ AGG: SUM, AVG, COUNT, COUNT_DISTINCT, MAX, MIN, MEDIAN. Filters: `"filters":[{"c
 
 Standard "agent overview" dashboard: total sessions, unique customers, average messages, average bot response time (big_number, Fast Facts tab), sessions by day, by channel, by agent, automation rate (xy, Trends tab). Eight charts, one generate_dashboard, one apply_dashboard_template.
 
-## Own SQL and own datasets
+## Own datasets
 
-Closed for now on every stand: do not try `execute_sql` or `create_virtual_dataset`. If the user asks for a custom query, build it from the catalog and the recipes above (filters, breakdowns, aggregates); if that cannot answer, say so.
+Use only when the Flametree MCP server instructions allow `create_virtual_dataset` (they name the database "Flametree MCP"); otherwise do not try it and build charts on the catalog datamarts. `execute_sql` is closed on every stand: never try it.
+
+Prefer the catalog and the recipes above; create an own dataset only when they cannot answer (custom grouping, joins of datamarts, window functions, a derived column).
+- Database: "Flametree MCP"; find its id with `list_databases` and pass it as `database_id`.
+- Tables: only the catalog datamarts, always with the schema: `datamarts.hp_sessions`, `datamarts.hp_session_logs`, `datamarts.standard_calculated_hp_session_logs`, `datamarts.vw_human_agent_handled`, `datamarts.hp_communications`, `datamarts.vw_campaign_participants_v2`, `datamarts.vw_communications_v2`. Other tables and schemas are refused.
+- One plain SELECT. Not allowed: several statements, Jinja (`{{ }}`), a CTE named like a datamart (name CTEs differently, e.g. `s`), system or XML functions (`pg_*`, `current_setting`, `query_to_xml`, `xpath`, `dblink`), schema-qualified functions. On a refusal read the message, fix the SQL and try once more.
+- The rows are limited to the active tenant automatically. Do not filter by `tenant_id`; to see another company, switch with `use_tenant` (skill `flametree-tenants`), the same dataset then shows that company.
+- Keep a time column in the output if the chart needs a time axis, give columns clear aliases, aggregate in SQL where it helps.
+- Dataset names are shared by all users of the stand: make the name specific, for example `<topic>_<user or team>_<yyyymmdd>`, and on "already exists" pick another name. Then use the returned dataset id in `generate_chart`. Own datasets are visible only to their owner; the catalog stays shared.
 
 ## Stands
 
