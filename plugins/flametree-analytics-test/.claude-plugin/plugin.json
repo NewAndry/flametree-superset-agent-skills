@@ -1,7 +1,7 @@
 {
   "name": "flametree-analytics-test",
   "displayName": "Flametree Analytics (test)",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "description": "Flametree analytics (test stand) in Claude: connects the flametree-test MCP server (Apache Superset at portal.flametree.test.enfint.ai) and adds skills with the datamart catalog, chart recipes, house-style dashboards and tenant handling.",
   "author": {
     "name": "Flametree analytics"

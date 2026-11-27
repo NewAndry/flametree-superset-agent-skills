@@ -1,6 +1,6 @@
 {
   "_comment": "One plugin per stand; only stands with \"enabled\": true (MCP service on) go to the marketplace. Edit here, then run: python scripts/build_plugins.py",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "repository": "https://gitlab.enfint.ai/flametree/flametree-superset-agent-skills",
   "mcpPath": "/ai-mcp/mcp",
   "stands": [
